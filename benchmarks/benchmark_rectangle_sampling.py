@@ -74,7 +74,7 @@ n        = 1
 k        = (2*np.pi*n)/lam0 
 omega1   = 80e-6
 
-f_lins = 20e-3
+f_lins = 10e-3
 T_lins = np.exp(-1j*k*R**2/(2*f_lins))
 
 offset_x = 1e-3

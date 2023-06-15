@@ -24,8 +24,28 @@ def PAS(E1, L, N, a, lam0, n):
     
     k = 2*np.pi*n/lam0
     KZ = np.sqrt(k**2 - KX**2 - KY**2, dtype=complex)
-    
     phase_prop = np.exp(1j*KZ*L)
+
+    A = (a**2/(4*np.pi**2))*fft2c(E1)
+    B = A*phase_prop
+    E2 = (N*delta_k)**2*ifft2c(B)
+    
+    return E2
+
+def shifted_PAS(E1, L, N, a, lam0, n, beta):
+    '''
+    Propagation of angular spectrum square sampling grid
+    '''
+    delta_k = 2*np.pi/(N*a)
+    kx  = np.arange(-(N/2)*delta_k, (N/2)*delta_k, delta_k)
+    ky  = kx
+    KX, KY = np.meshgrid(kx,ky)
+    
+    k = 2*np.pi*n/lam0
+    KZ = np.sqrt(k**2 - KX**2 - KY**2, dtype=complex)
+    KZ_tilde = KZ*np.cos(beta) - KX*np.sin(beta)
+    L_tilde = L/np.cos(beta)
+    phase_prop = np.exp(1j*KZ_tilde*L_tilde)
 
     A = (a**2/(4*np.pi**2))*fft2c(E1)
     B = A*phase_prop

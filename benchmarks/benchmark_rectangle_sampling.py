@@ -90,7 +90,7 @@ x_mm = x*1e3
 y_mm = y*1e3
 extent = [x_mm.min(), x_mm.max(), y_mm.min(), y_mm.max()]
 
-plot_starting_field = True
+plot_starting_field = False
 if plot_starting_field:
     plot_intensity_and_phase(I1_norm, E1_phase, x, y, 'Plane 1')
     
@@ -105,7 +105,6 @@ I_crossection_x = np.zeros(shape=(Ny, len(L_prop_vect)))
 I_crossection_y = np.zeros(shape=(Nx, len(L_prop_vect)))
 
 for i in range(len(L_prop_vect)):
-
     print('Propagating step ' + str(i) + '/' + str(len(L_prop_vect)))
 
     # Propagate to plane 2
@@ -132,7 +131,7 @@ plt.plot(x_mm, I_crossection_y[:,-1]/np.max(I_crossection_y[:,-1]))
     
     
 #%%
-data_save_path = Path(current_file_folder_path, 'data')
+data_save_path = Path(current_file_folder_path, 'data_square_rect')
 np.savetxt(Path(data_save_path, 'I_crossection_x_rect.csv'), I_crossection_x, delimiter=',')
 np.savetxt(Path(data_save_path, 'I_crossection_y_rect.csv'), I_crossection_y, delimiter=',')
 np.savetxt(Path(data_save_path, 'L_prop_vect_mm_rect.csv'), L_prop_vect_mm, delimiter=',')

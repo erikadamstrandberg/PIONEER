@@ -13,8 +13,6 @@ def ifft2c(x):
     '''
     return np.fft.fftshift(np.fft.ifft2(np.fft.fftshift(x)))
 
-
-
 def PAS(E1, L, N, a, lam0, n):
     '''
     Propagation of angular spectrum square sampling grid

@@ -19,7 +19,7 @@ if PAS_PATH_string not in sys.path:
 
 #%% Recangular data
 
-data_save_path = Path(current_file_folder_path, 'data')
+data_save_path = Path(current_file_folder_path, 'data_square_rect')
 
 I_crossection_x_square = np.loadtxt(Path(data_save_path, 'I_crossection_x.csv'), delimiter=',')
 I_crossection_y_square = np.loadtxt(Path(data_save_path, 'I_crossection_y.csv'), delimiter=',')

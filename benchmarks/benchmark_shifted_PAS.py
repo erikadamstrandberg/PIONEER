@@ -102,17 +102,20 @@ L_prop_vect_mm = L_prop_vect*1e3
 I_crossection_x = np.zeros(shape=(Ny, len(L_prop_vect)))
 I_crossection_y = np.zeros(shape=(Nx, len(L_prop_vect)))
 
+beta = 0
+
 for i in range(len(L_prop_vect)):
     print('Propagating step ' + str(i) + '/' + str(len(L_prop_vect)))
 
     # Propagate to plane 2
-    E2 = PAS(E1, L_prop_vect[i], Nx, ax, lam0, n)
+    E2 = shifted_PAS(E1, L_prop_vect[i], Nx, ax, lam0, n, beta)
     # Intensity in plane 2                          
     I2 = np.abs(E2)**2
     I2 = I2/np.max(I2)
     
     I_crossection_x[:, i] = I2[:, int(Nx/2+1)]
     I_crossection_y[:, i] = I2[int(Nx/2+1), :]
+
     
     
 #%%
